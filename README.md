@@ -1,2 +1,3 @@
-# nodejs-express
-example express project
+Проект "Сервис аренды жилья в Новосибирске"
+с использованием библиотеки React.js
+в рамках обучения "ЦФТ" по программе FocusStart "Front-end разработчик"

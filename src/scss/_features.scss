@@ -1,0 +1,67 @@
+.feature {
+  display: inline-block;
+  vertical-align: middle;
+
+  width: 70px;
+  height: 45px;
+  margin-right: 2px;
+
+  font-size: 0;
+
+  border: solid 1px #eee;
+  border-radius: 3px;
+
+  background-color: #fafafa;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  cursor: pointer;
+}
+
+.feature:hover {
+  box-shadow: inset 0 0 0 1px #ffaa99;
+}
+
+.feature:active {
+  box-shadow: none;
+  background-color: #ff6547;
+}
+
+.features .feature__checkbox {
+  width: auto;
+}
+
+.feature:focus,
+.feature__checkbox:focus+.feature {
+  box-shadow: 0 0 2px 2px #ff6547;
+}
+
+.feature__checkbox:checked+.feature {
+  background-color: #ff6547;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+}
+
+.feature--wifi {
+  background-image: url("../img/wifi.png");
+}
+
+.feature--dishwasher {
+  background-image: url("../img/dishwasher.png");
+}
+
+.feature--parking {
+  background-image: url("../img/parking.png");
+}
+
+.feature--washer {
+  background-image: url("../img/washer.png");
+}
+
+.feature--elevator {
+  background-image: url("../img/lift.png");
+}
+
+.feature--conditioner {
+  background-image: url("../img/conditioner.png");
+}

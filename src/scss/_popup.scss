@@ -1,0 +1,136 @@
+.popup__avatar {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+
+  margin-bottom: 10px;
+}
+
+.popup__close {
+  position: absolute;
+  cursor: pointer;
+  bottom: 100%;
+  right: 0;
+
+  padding: 0;
+
+  font-size: 0;
+
+  border: 0;
+  background: none;
+}
+
+.popup__close:active {
+  transform: translate(1px, 1px);
+}
+
+.popup__close:focus {
+  outline: none;
+  box-shadow: 0 0 10px 3px #ff6547;
+}
+
+.popup__close::after {
+  font-size: 50px;
+  line-height: 40px;
+
+  display: block;
+
+  content: "×";
+
+  color: #000000;
+}
+
+.popup__title {
+  margin: 0;
+  margin-bottom: 10px;
+
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.popup__text {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.popup__text--price {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.popup__price span {
+  font-size: 16px;
+}
+
+.popup__type {
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.popup__text--capacity {
+  margin-bottom: 0;
+}
+
+.popup__features {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.popup__features {
+  margin-bottom: 10px;
+}
+
+.popup__feature {
+  display: inline-block;
+  overflow: hidden;
+
+  width: 30px;
+  height: 28px;
+
+  font-size: 0;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.popup__feature--wifi {
+  background-image: url("../img/wifi.png");
+}
+
+.popup__feature--dishwasher {
+  background-image: url("../img/dishwasher.png");
+}
+
+.popup__feature--parking {
+  background-image: url("../img/parking.png");
+}
+
+.popup__feature--washer {
+  background-image: url("../img/washer.png");
+}
+
+.popup__feature--elevator {
+  background-image: url("../img/lift.png");
+}
+
+.popup__feature--conditioner {
+  background-image: url("../img/conditioner.png");
+}
+
+.popup__photos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.popup__photo {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.popup__photo:hover {
+  border: 2px solid #ff5635;
+}

@@ -41,15 +41,14 @@ class Adverts extends PureComponent {
           <h1 className="header__title">Сервис аренды жилья в Новосибирске</h1>
         </header>
         <section className={classNames('map', { overlay: isLoading })} id="map">
-          <Map openPopup={this.openPopup} />
+          <Map openPopup={this.openPopup} adverts={adverts} />
           {/* {adverts.find(data => data.id === popupOpenedId) && ( */}
           {popupOpenedId && (
             <Article
-              adv={this.state.adverts.find(data => data.id == popupOpenedId)}
+              adv={this.state.adverts.find(data => data.id === popupOpenedId)}
               closePopup={this.closePopup}
             />
           )}
-          {/* )} */}
         </section>
       </div>
     );

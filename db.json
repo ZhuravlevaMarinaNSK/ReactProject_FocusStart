@@ -4,16 +4,21 @@
       "id": "e69fcfb925bbf",
       "avatar": "../src/img/avatars/user01.png",
       "title": "Большая уютная квартира",
-      "address": "Площадь Маркса, 1",
+      "addressText": "Площадь Маркса, 1",
       "price": "10000",
-      "lat": "54.98",
-      "long": "82.89",
+      "address": [
+        "54.98",
+        "82.89"
+      ],
+      "value": {
+        "lat": "54.98",
+        "lng": "82.89"
+      },
       "type": "Новостройка",
       "capacity": "1",
-      "time": [
-        "12",
-        "15"
-      ],
+      "rooms": "1",
+      "timein": "12",
+      "timeout": "15",
       "photos": [
         "../src/img/interiors/interior01.png",
         "../src/img/interiors/interior02.png",
@@ -33,27 +38,51 @@
     {
       "id": "e11fcfb925bbf",
       "avatar": "../src/img/avatars/user02.png",
-      "title": "Маленькая неуютная квартира",
-      "address": "Площадь Маркса, 10",
+      "title": "Маленькая еуютная квартира",
+      "addressText": "Площадь Маркса, 10",
       "price": "1000",
-      "type": "Хрущовка",
-      "lat": "54.99",
-      "long": "82.88",
-      "capacity": "2",
-      "time": [
-        "13",
-        "14"
+      "address": [
+        "54.95",
+        "82.85"
       ],
+      "value": {
+        "lat": "54.95",
+        "lng": "82.85"
+      },
+      "type": "Хрущовка",
+      "capacity": "2",
+      "rooms": "2",
+      "timein": "13",
+      "timeout": "14",
       "photos": [
-        "../src/img/interiors/interior04.png",
-        "../src/img/interiors/interior05.png"
+        "../src/img/interiors/interior01.png",
+        "../src/img/interiors/interior02.png",
+        "../src/img/interiors/interior03.png"
       ],
       "features": [
-        "elevator",
-        "conditioner"
+        "wifi",
+        "dishwasher",
+        "parking",
+        "washer"
       ],
+      "isRemovable": false,
+      "description": "Маленькая студия для студентов"
+    },
+    {
+      "id": "971db31b1464c",
       "isRemovable": true,
-      "description": "Миленько и чистенько"
+      "avatar": "./src/img/avatars/default.png",
+      "type": "Хрущовка",
+      "timein": "12:00",
+      "timeout": "12:00",
+      "rooms": "1",
+      "capacity": "1",
+      "value": {
+        "lat": 55.0174684,
+        "lng": 82.939123
+      },
+      "title": "ваяпааааааааааааааааааууууууууу",
+      "price": "2222"
     }
   ]
 }

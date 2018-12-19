@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import createRequest from 'core/create-request';
-import { fetchAdvert } from 'core/api-config';
+import { fetchAdvert, createAdvert } from 'core/api-config';
 import classNames from 'classnames/class-names';
 import Article from 'adverts/article';
 import Map from 'adverts/map';
@@ -22,6 +22,18 @@ class Adverts extends PureComponent {
     });
   }
 
+  addAdvert = (advert) => {
+    this.setState({ isLoading: true });
+    createRequest(createAdvert, null, { advert }).then(({ status, data }) => {
+      if (status === 'OK') {
+        this.setState(({ adverts }) => ({
+          isLoading: false,
+          adverts: adverts.concat(data)
+        }));
+      }
+    });
+  };
+
   openPopup = (id) => {
     this.setState({ popupOpenedId: id });
   };
@@ -32,9 +44,6 @@ class Adverts extends PureComponent {
 
   render() {
     const { popupOpenedId, isLoading, adverts } = this.state;
-    console.log(this.state);
-    // const { popupData } = popupOpenedId && adverts.find(data => data.id === popupOpenedId);
-    // console.log(popupData);
     return (
       <div>
         <header className="header">
@@ -42,11 +51,11 @@ class Adverts extends PureComponent {
         </header>
         <section className={classNames('map', { overlay: isLoading })} id="map">
           <Map openPopup={this.openPopup} adverts={adverts} />
-          {/* {adverts.find(data => data.id === popupOpenedId) && ( */}
           {popupOpenedId && (
             <Article
               adv={this.state.adverts.find(data => data.id === popupOpenedId)}
               closePopup={this.closePopup}
+              onMarkerDelete={this.props.onMarkerDelete}
             />
           )}
         </section>

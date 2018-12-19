@@ -19,6 +19,10 @@
   cursor: pointer;
 }
 
+.features__wrapper {
+  margin: auto 0;
+}
+
 .feature:hover {
   box-shadow: inset 0 0 0 1px #ffaa99;
 }
@@ -28,7 +32,7 @@
   background-color: #ff6547;
 }
 
-.features .feature__checkbox {
+.ad-form__element--features .feature__checkbox {
   width: auto;
 }
 

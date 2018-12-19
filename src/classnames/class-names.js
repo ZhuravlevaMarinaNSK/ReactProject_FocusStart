@@ -15,7 +15,7 @@ const getMods = (...args) => {
     } else if (typeof arg === 'object') {
       Object.keys(arg).forEach((key) => {
         if (arg[key]) {
-          mods.push(key);
+          mods.push(arg[key]);
         }
       });
     }

@@ -3,7 +3,7 @@ import React from 'react';
 function RenderPhotos(advert) {
   const photo = [];
   console.log(advert);
-  const photocartes = advert.adv.photos;
+  const photocartes = advert.adv.photos || [];
   if (photocartes.length > 0) {
     photocartes.forEach(it => photo.push(
         <img

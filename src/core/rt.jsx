@@ -8,15 +8,8 @@ function Root() {
     <BrowserRouter>
       <div>
         <header>
-          <Link className={`header__button ${window.location.pathname === '/' ? '' : ''}`} to="/">
-            Главная
-          </Link>
-          <Link
-            className={`header__button header__button--new ${
-              window.location.pathname === '/new' ? '' : ''
-            }`}
-            to="/new"
-          >
+          <Link className="header__button header__button--main" to="/" title="На главную" />
+          <Link className="header__button header__button--new" to="/new">
             Подать объявление
           </Link>
         </header>

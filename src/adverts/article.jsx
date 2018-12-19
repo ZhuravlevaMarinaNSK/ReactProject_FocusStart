@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react';
+import createRequest from 'core/create-request';
+import { deleteAdvert } from 'core/api-config';
 import RenderPhotos from 'adverts/renderPhotos';
 
 function checkFeature(adv, item) {
@@ -16,15 +18,25 @@ function checkFeature(adv, item) {
   return false;
 }
 
-function onRemoveButtonClick() {
-  const isDelete = confirm('Вы уверены, что хотите удалить объявление?');
-  alert(isDelete);
-}
-
 class Article extends PureComponent {
+  onRemoveButtonClick = () => {
+    const id = this.props.adv.id;
+    const isDelete = confirm('Вы уверены, что хотите удалить объявление?');
+    alert(isDelete);
+    if (isDelete) {
+      createRequest(deleteAdvert, { id }).then((response) => {
+        if (response.status === 'OK') {
+          alert('Объявление удалено');
+          this.props.onMarkerDelete(this.props.adv);
+        }
+      });
+    }
+  };
+
   render() {
-    console.log(this.props);
     const { adv, closePopup } = this.props;
+    console.log(adv);
+    // const adv = this.state.adv;
     return (
       <article className="map__card popup">
         <img
@@ -38,7 +50,7 @@ class Article extends PureComponent {
           Закрыть
         </button>
         <h3 className="popup__title">{adv.title}</h3>
-        <p className="popup__text popup__text--address">{adv.address}</p>
+        <p className="popup__text popup__text--address">{adv.addressText}</p>
         <p className="popup__text popup__text--price">
 {adv.price}
 {' '}
@@ -46,49 +58,33 @@ class Article extends PureComponent {
 </p>
         <h4 className="popup__type">{adv.type}</h4>
         <p className="popup__text popup__text--capacity">
-для
+          Комнат: 
+{' '}
+{adv.rooms}
+          {'. '}
+          Вмещает гостей: 
 {' '}
 {adv.capacity}
-{' '}
-гостей
-</p>
+        </p>
         <p className="popup__text popup__text--time">
           Заезд после 
 {' '}
-{adv.time[1]}
+{adv.timein}
 , выезд до
 {' '}
-{adv.time[0]}
+{adv.timeout}
         </p>
         <ul className="popup__features">
-          <li
-            className={`${checkFeature(adv, 'wifi') ? 'popup__feature--wifi popup__feature' : ''}`}
-          />
-          <li
-            className={`${
-              checkFeature(adv, 'dishwasher') ? 'popup__feature--dishwasher popup__feature' : ''
-            }`}
-          />
-          <li
-            className={`${
-              checkFeature(adv, 'parking') ? 'popup__feature--parking popup__feature' : ''
-            }`}
-          />
-          <li
-            className={`${
-              checkFeature(adv, 'washer') ? 'popup__feature--washer popup__feature' : ''
-            }`}
-          />
-          <li
-            className={`${
-              checkFeature(adv, 'elevator') ? 'popup__feature--elevator popup__feature' : ''
-            }`}
-          />
-          <li
-            className={`${
-              checkFeature(adv, 'conditioner') ? 'popup__feature--conditioner popup__feature' : ''
-            }`}
-          />
+          {['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'].map(key => (
+            <li
+              className={`${
+                checkFeature(adv, key)
+                  ? `popup__feature--${key} popup__feature`
+                  : 'popup--invisible'
+              }`}
+              key={key}
+            />
+          ))}
         </ul>
         <p className="popup__description">{adv.description}</p>
         <div className="popup__photos">
@@ -97,7 +93,7 @@ class Article extends PureComponent {
         <button
           type="button"
           className={`${adv.isRemovable ? 'button' : 'button--invisible'}`}
-          onClick={onRemoveButtonClick}
+          onClick={this.onRemoveButtonClick}
         >
           Удалить объявление
         </button>

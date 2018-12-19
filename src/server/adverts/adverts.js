@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const db = require('../db/db');
 
-const newAdvert = (...args) => ({
-  id: String(Math.random()
-    .toString(16)
-    .split('.')[1]),
-  args,
-  isRemovable: true
-});
+const newAdvert = data => (
+  Object.assign({
+    id: String(Math.random()
+      .toString(16)
+      .split('.')[1]),
+    isRemovable: true
+  }, data));
 
 // GET /adverts
 router.get('/', (req, res) => {
@@ -34,11 +34,10 @@ router.get('/:id', (req, res) => {
 });
 
 // POST /adverts/new
-router.post('./new', (req, res, next) => {
-  const advert = newAdvert(req.body.text);
-
+router.post('/', (req, res) => {
+  console.log(req.body.dataValues);
+  const advert = newAdvert(req.body.dataValues);
   console.log(advert);
-
   db
     .get('adverts')
     .push(advert)
@@ -48,7 +47,6 @@ router.post('./new', (req, res, next) => {
     status: 'OK',
     data: advert
   });
-  next();
 });
 
 // PATCH /tasks/:id

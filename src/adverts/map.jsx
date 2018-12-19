@@ -9,18 +9,43 @@ class Map extends Component {
     return (
       <div>
         {DG.then(() => {
-          this.setState(
-            (this.state.map = DG.map('map', {
+          this.setState({
+            map: DG.map('map', {
               center: [54.98, 82.89],
               zoom: 13,
               fullscreenControl: false
-            }))
-          );
+            })
+          });
           this.state.map.zoomControl.setPosition('topright');
-          console.log(this.state.map);
         })}
       </div>
     );
+  }
+
+  // onMarkerDelete(item) {
+  //   DG.marker([item.value.lat, item.value.lng]).removeTo(this.state.map);
+  // }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { adverts, openPopup } = this.props;
+    const { prevAdverts } = prevProps;
+    // if (adverts.length < prevAdverts.length) {
+    //   adverts.map((item) => {
+    //     const myIcon = DG.icon({
+    //       iconUrl: item.avatar || './src/img/avatars/default.png',
+    //       iconSize: [40, 40],
+    //       iconAnchor: [22, 20],
+    //       popupAnchor: [-3, -6]
+    //     });
+    //     this.state.map
+    //       && DG.marker([item.value.lat, item.value.lng], { icon: myIcon })
+    //         .addTo(this.state.map)
+    //         .bindLabel(item.title)
+    //         .on('click', () => {
+    //           openPopup(item.id);
+    //         });
+    //   });
+    // }
   }
 
   render() {
@@ -29,19 +54,18 @@ class Map extends Component {
       <div className="test">
         {adverts.map((item) => {
           const myIcon = DG.icon({
-            iconUrl: item.avatar,
+            iconUrl: item.avatar || './src/img/avatars/default.png',
             iconSize: [40, 40],
             iconAnchor: [22, 20],
             popupAnchor: [-3, -6]
           });
-          console.log(this.state.map);
-          DG.marker([item.lat, item.long], { icon: myIcon })
-            .addTo(this.state.map)
-            .bindLabel(item.title)
-            .on('click', () => {
-              console.log(item.id);
-              openPopup(item.id);
-            });
+          this.state.map
+            && DG.marker([item.value.lat, item.value.lng], { icon: myIcon })
+              .addTo(this.state.map)
+              .bindLabel(item.title)
+              .on('click', () => {
+                openPopup(item.id);
+              });
         })}
       </div>
     );

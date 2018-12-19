@@ -6,6 +6,10 @@
   margin-bottom: 10px;
 }
 
+.popup--invisible {
+  display: none;
+}
+
 .popup__close {
   position: absolute;
   cursor: pointer;
@@ -46,6 +50,13 @@
 
   font-size: 16px;
   line-height: 18px;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+.popup__description {
+  max-width: 200px;
+  word-wrap: break-word;
 }
 
 .popup__text {

@@ -1,36 +1,32 @@
 import React, { PureComponent } from 'react';
 import createRequest from 'core/create-request';
-import { deleteAdvert } from 'core/api-config';
+
 import RenderPhotos from 'adverts/renderPhotos';
 
 function checkFeature(adv, item) {
   const feature = item;
   const advert = adv;
   let result = false;
-  for (let i = 0; i < advert.features.length; i++) {
-    if (advert.features[i] === feature) {
-      result = true;
-    }
-    if (result) {
-      return true;
+  if (advert.features) {
+    for (let i = 0; i < advert.features.length; i++) {
+      if (advert.features[i] === feature) {
+        result = true;
+      }
+      if (result) {
+        return true;
+      }
     }
   }
+
   return false;
 }
 
 class Article extends PureComponent {
   onRemoveButtonClick = () => {
-    const id = this.props.adv.id;
-    const isDelete = confirm('Вы уверены, что хотите удалить объявление?');
-    alert(isDelete);
-    if (isDelete) {
-      createRequest(deleteAdvert, { id }).then((response) => {
-        if (response.status === 'OK') {
-          alert('Объявление удалено');
-          this.props.onMarkerDelete(this.props.adv);
-        }
-      });
-    }
+    console.log(this.props.adv.id);
+    this.props.onDelete(this.props.adv.id);
+    // const isDelete = confirm('Вы уверены, что хотите удалить объявление?');
+    // alert(isDelete);
   };
 
   render() {

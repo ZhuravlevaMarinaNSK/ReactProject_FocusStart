@@ -35,7 +35,7 @@ class LocationSearchInput extends React.Component {
           <div>
             <input
               {...getInputProps({
-                placeholder: 'Search Places ...',
+                placeholder: 'Начните вводить адрес ...',
                 className: 'location-search-input'
               })}
             />

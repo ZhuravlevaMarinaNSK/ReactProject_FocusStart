@@ -15,40 +15,39 @@
   right: 20px;
   display: inline-block;
   margin: auto 0;
+  font-size: 22px;
+  font-weight: 700;
+  padding: 5px 10px;
+  color: #353535;
 
   text-decoration: none;
 
   box-sizing: content-box;
   cursor: pointer;
+
   // background-color: white;
   // border: 4px solid #ffaa99;
   // border-radius: 8px;
-}
-
-.header__button--main {
-  background-image: url("../img/avatars/default.png");
-  width: 50px;
-  height: 50px;
-  top: 10px;
-  right: 41px;
-}
-
-.header__button--new {
-  font-size: 22px;
-  font-weight: 700;
-  padding: 5px 10px;
-  color: #353535;
-  right: 220px;
-
   &:hover {
-    text-decoration: underline;
+    text-shadow: 1px 1px 2px #ff6d51;
   }
 }
 
-.header__button:hover,
-.header__button:focus {
-  border-color: #ff6d51;
+.header__button--main {
+  left: 150px;
 }
+
+// .header__button--new {
+//   font-size: 22px;
+//   font-weight: 700;
+//   padding: 5px 10px;
+//   color: #353535;
+// }
+
+// .header__button:hover,
+// .header__button:focus {
+//   border-color: #ff6d51;
+// }
 
 .header__button:focus {
   outline: none;
@@ -58,6 +57,4 @@
   outline: none;
 
   color: white;
-  border-color: #ff6d51;
-  background-color: #ff6d51;
 }

@@ -1,39 +1,45 @@
 import React, { PureComponent, createRef } from 'react';
 import classNames from 'classnames/class-names';
-import LoadFile from 'myadvert/loadfile';
 
 class CreateAvatar extends PureComponent {
   fieldEl = createRef();
 
+  state = {
+    src: './src/img/avatars/default.png'
+  };
+
   avatar = [];
 
-  onAvatarChange = () => {
-    console.log(this.props.data);
-    const input = document.querySelector(`.${this.props.data.avatar.class}`);
-    const prew = document.querySelector('.ad-form-header__preview img');
-    return <LoadFile input={input} prew={prew} />;
+  componentDidUpdate(prevProps) {
+    if (this.state.src !== prevProps.data.img.src) {
+      console.log('change avatar');
+    }
+  }
 
-    // console.log(this.props, this.props.data.avatar.id);
-    // this.props.onChange(this.props.data.avatar.id, this.fieldEl.current.value);
+  onInputChange = () => {
+    this.setState({ src: this.fieldEl.current.value });
+    console.log(this.props);
+    this.props.onChange(this.props.data.avatar.id, this.fieldEl.current.value);
   };
 
   downloadAvatar(data) {
+    this.avatar = [];
     this.avatar.push(
       <div className="ad-form-header__upload" key={data.data.avatar.id}>
         <div className="ad-form-header__preview">
-          <img src={data.data.img.src} alt="Аватар пользователя" width="40" height="44" />
+          <img src={this.state.src} alt="Аватар пользователя" width="40" height="44" />
         </div>
         <div className={data.data.fieldsetClass}>
           <label className={data.data.labelClass} htmlFor="avatar">
             <input
-              type="file"
+              type="text"
               id={data.data.avatar.id}
               name={data.data.avatar.name}
               className={data.data.avatar.class}
               ref={this.fieldEl}
-              onChange={this.onAvatarChange}
+              onChange={this.onInputChange}
             />
-            Загрузите или&nbsp;перетащите сюда фото
+            Вставьте ссылку на изображение
           </label>
         </div>
         <p className="ad-form-header__info">

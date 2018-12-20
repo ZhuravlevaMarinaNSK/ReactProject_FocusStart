@@ -48,7 +48,7 @@
 
 .ad-form-header__info {
   margin-top: 0;
-  margin-left: 20px;
+  margin-left: 75px;
 }
 
 .ad-form-header__drop-zone {
@@ -89,6 +89,11 @@
   max-width: 50%;
 }
 
+.ad-form__element--long {
+  flex-basis: 100%;
+  max-width: 100%;
+}
+
 .ad-form__label {
   display: block;
   padding-bottom: 5px;
@@ -109,6 +114,7 @@
   border: 1px solid #d9d9d3;
   border-radius: 4px;
 }
+
 
 .ad-form__element input:hover,
 .ad-form__element select:hover,
@@ -138,7 +144,7 @@
 .ad-form textarea {
   width: calc(100% - 20px);
   max-width: calc(100% - 20px);
-  min-height: 230px;
+  min-height: 130px;
 
   padding-top: 10px;
 }

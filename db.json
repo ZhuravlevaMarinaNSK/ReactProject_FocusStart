@@ -69,20 +69,36 @@
       "description": "Маленькая студия для студентов"
     },
     {
-      "id": "971db31b1464c",
+      "id": "057a9ec1cd322",
       "isRemovable": true,
-      "avatar": "./src/img/avatars/default.png",
+      "avatar": "https://ya.cc/1_p-M",
       "type": "Хрущовка",
       "timein": "12:00",
       "timeout": "12:00",
       "rooms": "1",
       "capacity": "1",
+      "title": "рдддддддддддддддддддддддддддддддддддддддддддддд",
       "value": {
-        "lat": 55.0174684,
-        "lng": 82.939123
+        "lat": 54.9810493,
+        "lng": 82.89647790000004
       },
-      "title": "ваяпааааааааааааааааааууууууууу",
-      "price": "2222"
+      "price": "33333"
+    },
+    {
+      "id": "75d81f0223cb4",
+      "isRemovable": true,
+      "avatar": "https://yandex.ru/images/search?pos=0&img_url=https%3A%2F%2Fcs8.pikabu.ru%2Fpost_img%2F2018%2F01%2F03%2F6%2Fog_og_1514970948269520343.jpg&text=%D0%BA%D0%BE%D1%82%D0%B8%D0%BA%D0%B8&rpt=simage",
+      "type": "Хрущовка",
+      "timein": "12:00",
+      "timeout": "12:00",
+      "rooms": "1",
+      "capacity": "1",
+      "title": "вымывмпымиыяиавыыыыыыыыыыыыыыыы",
+      "value": {
+        "lat": 54.9810493,
+        "lng": 82.89647790000004
+      },
+      "price": "4444"
     }
   ]
 }

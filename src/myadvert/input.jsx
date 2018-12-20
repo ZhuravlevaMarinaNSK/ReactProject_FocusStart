@@ -5,7 +5,9 @@ class Input extends PureComponent {
 
   innerInput = [];
 
-  onInputChange = () => this.props.onChange(this.props.data.input.id, this.fieldEl.current.value);
+  onInputChange = () => {
+    this.props.onChange(this.props.data.input.id, this.fieldEl.current.value);
+  };
 
   createInput(data) {
     this.innerInput.push(
@@ -21,6 +23,7 @@ class Input extends PureComponent {
         max={data.data.input.max}
         ref={this.fieldEl}
         required
+        autoComplete="off"
         onChange={this.onInputChange}
       />
     );

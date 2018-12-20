@@ -5,6 +5,9 @@
 @import "../scss/features.scss";
 @import "../scss/notice.scss";
 @import "../scss/popup.scss";
+@import "../scss/success.scss";
+@import "../scss/modal.scss";
+
 
 *,
 *::before,
@@ -17,6 +20,10 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.active-link {
+  background-color: red;
 }
 
 .visually-hidden {

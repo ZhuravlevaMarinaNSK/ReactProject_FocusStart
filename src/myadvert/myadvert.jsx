@@ -20,13 +20,13 @@ class MyAdvert extends PureComponent {
       for: 'avatar',
       textClass: 'ad-form-header__info',
       text:
-        'Заполните все обязательные поля, назначьте цену, загрузите фотографии. Придумайте интересное описание. Оно сделает объявление более живым и привлекательным. Получившееся объявление должно давать гостям полное представление о вашем жилье.',
+        'Заполните все обязательные поля, назначьте цену, загрузите аватар. Придумайте интересное описание. Оно сделает объявление более живым и привлекательным. Получившееся объявление должно давать гостям полное представление о вашем жилье.',
       avatar: {
         id: 'avatar',
         name: 'avatar',
         type: 'file',
         required: true,
-        class: 'ad-form-header__input visually-hidden'
+        class: 'ad-form-header__input'
       },
       img: {
         src: './src/img/avatars/default.png'
@@ -45,12 +45,13 @@ class MyAdvert extends PureComponent {
         maxLength: 100,
         min: null,
         max: null,
-        required: true
+        required: true,
+        value: null
       }
     },
     {
       fieldsetClass: 'wide',
-      labelText: 'Адрес',
+      labelText: 'Выберите адрес из выпадающего списка',
       for: 'address',
       address: {
         id: 'address',
@@ -262,7 +263,7 @@ class MyAdvert extends PureComponent {
       }
     },
     {
-      fieldsetClass: 'wide',
+      fieldsetClass: 'long',
       featureClass: 'features',
       labelText: 'Удобства: Wi-Fi, кухня, парковка, стиралка, лифт, кондиционер',
       for: 'features',
@@ -275,7 +276,7 @@ class MyAdvert extends PureComponent {
     }
   ];
 
-  onChange = (name, value, value2) => {
+  onChange = (name, value) => {
     if (name === 'address') {
       this.setState({ value });
     } else {
@@ -283,36 +284,46 @@ class MyAdvert extends PureComponent {
     }
   };
 
-  addAdvert = (dataValues) => {
-    Object.keys(dataValues).forEach((item) => {
+  onResetButtonClick = () => {
+    const form = document.querySelector('form');
+    form.reset();
+  };
+
+  addAdvert = dataValues => {
+    Object.keys(dataValues).forEach(item => {
       if (item.includes('feature')) {
-        debugger;
         dataValues.features = dataValues.features || [];
         const items = item.split('-');
         dataValues.features.push(items[1]);
         delete dataValues.item;
       }
     });
+    console.log(dataValues);
+    const success = document.querySelector('.success');
     createRequest(createAdvert, null, { dataValues }).then(({ status }) => {
       if (status === 'OK') {
-        alert('Вы успешно опубликовали объявление!');
+        success.classList.remove('hidden');
+        setTimeout(() => {
+          this.props.history.goBack();
+        }, 2000);
       }
     });
   };
 
-  onSubmit = (event) => {
+  onSubmit = event => {
     event.preventDefault();
     this.addAdvert(this.state);
   };
 
   renderFields() {
     const fields = this.ADVERT_FIELDS;
-    return fields.map(it => Object.keys(it).map((key) => {
+    return fields.map(it =>
+      Object.keys(it).map(key => {
         if (key === 'avatar') {
           return (
             <fieldset key={it.id} className="ad-form-header">
               <legend className="ad-form-header__title">Ваша фотография (для карты)</legend>
-              <CreateAvatar data={it} key={it.id} />
+              <CreateAvatar data={it} key={it.id} onChange={this.onChange} />
             </fieldset>
           );
         }
@@ -378,10 +389,12 @@ class MyAdvert extends PureComponent {
             </fieldset>
           );
         }
-      }));
+      })
+    );
   }
 
   render() {
+    console.log(this.props);
     return (
       <section className="notice">
         <h2 className="notice__title">Ваше объявление</h2>
@@ -389,34 +402,20 @@ class MyAdvert extends PureComponent {
         <form className="ad-form" onSubmit={this.onSubmit}>
           {this.renderFields()}
 
-          <fieldset className="ad-form__element ad-form__element--wide" key="photos">
-            <span className="ad-form__label">Фотографии жилья</span>
-            <div className="ad-form__photo-container">
-              <div className="ad-form__upload">
-                <label htmlFor="images" className="ad-form__drop-zone">
-                  <input
-                    type="file"
-                    id="images"
-                    name="images"
-                    className="ad-form__input visually-hidden"
-                  />
-                  Загрузите или&nbsp;перетащите сюда фото
-                </label>
-              </div>
-              <div className="ad-form__photo" />
-            </div>
-          </fieldset>
-
           <fieldset className="ad-form__element ad-form__element--submit" key="buttons">
             <button className="ad-form__submit" type="submit">
               Опубликовать
             </button>
             <span className="ad-form__word">или</span>
-            <button className="ad-form__reset" type="button">
+            <button className="ad-form__reset" type="button" onClick={this.onResetButtonClick}>
               очистить
             </button>
           </fieldset>
         </form>
+
+        <div className="success hidden">
+          <p className="success__message">Ваше объявление успешно размещено!</p>
+        </div>
       </section>
     );
   }

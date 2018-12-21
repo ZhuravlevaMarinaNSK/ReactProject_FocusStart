@@ -37,6 +37,7 @@ class CreateAvatar extends PureComponent {
               name={data.data.avatar.name}
               className={data.data.avatar.class}
               ref={this.fieldEl}
+              autoComplete='off'
               onChange={this.onInputChange}
             />
             Вставьте ссылку на изображение

@@ -59,3 +59,5 @@ class CreateAvatar extends PureComponent {
 }
 
 export default CreateAvatar;
+
+// https://im0-tub-ru.yandex.net/i?id=0ee58d179efe157ee28965b5798a3194&n=13&exp=1

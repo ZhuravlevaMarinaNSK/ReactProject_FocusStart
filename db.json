@@ -4,15 +4,15 @@
       "id": "e69fcfb925bbf",
       "avatar": "../src/img/avatars/user01.png",
       "title": "Большая уютная квартира",
-      "addressText": "Площадь Маркса, 1",
+      "addressText": "Пр. К.Маркса, 1",
       "price": "10000",
       "address": [
-        "54.98",
-        "82.89"
+        "54.981372",
+        "82.89755300000002"
       ],
       "value": {
-        "lat": "54.98",
-        "lng": "82.89"
+        "lat": "54.981372",
+        "lng": "82.89755300000002"
       },
       "type": "Новостройка",
       "capacity": "1",
@@ -38,16 +38,16 @@
     {
       "id": "e11fcfb925bbf",
       "avatar": "../src/img/avatars/user02.png",
-      "title": "Маленькая еуютная квартира",
-      "addressText": "Площадь Маркса, 10",
+      "title": "Маленькая неуютная квартира",
+      "addressText": "Пр. К.Маркса, 10",
       "price": "1000",
       "address": [
-        "54.95",
-        "82.85"
+        "54.9806021",
+        "82.89542549999999"
       ],
       "value": {
-        "lat": "54.95",
-        "lng": "82.85"
+        "lat": "54.9806021",
+        "lng": "82.89542549999999"
       },
       "type": "Хрущовка",
       "capacity": "2",
@@ -69,36 +69,167 @@
       "description": "Маленькая студия для студентов"
     },
     {
-      "id": "057a9ec1cd322",
-      "isRemovable": true,
-      "avatar": "https://ya.cc/1_p-M",
-      "type": "Хрущовка",
-      "timein": "12:00",
-      "timeout": "12:00",
-      "rooms": "1",
-      "capacity": "1",
-      "title": "рдддддддддддддддддддддддддддддддддддддддддддддд",
+      "id": "e11fcdf925bbf",
+      "avatar": "../src/img/avatars/user03.png",
+      "title": "Приличная квартира для серьезных людей",
+      "addressText": "Площадь Ленина, 10",
+      "price": "10000",
+      "address": [
+        "55.030372",
+        "82.91963720000001"
+      ],
       "value": {
-        "lat": 54.9810493,
-        "lng": 82.89647790000004
+        "lat": "55.030372",
+        "lng": "82.91963720000001"
       },
-      "price": "33333"
+      "type": "Хоромы",
+      "capacity": "3",
+      "rooms": "3",
+      "timein": "14",
+      "timeout": "15",
+      "photos": [
+        "../src/img/interiors/interior01.png",
+        "../src/img/interiors/interior03.png"
+      ],
+      "features": [
+        "wifi",
+        "dishwasher",
+        "parking",
+        "elevator",
+        "washer",
+        "conditioner"
+      ],
+      "isRemovable": false,
+      "description": "Прекрасный вариант для обеспеченных людей с высокими запросами"
     },
     {
-      "id": "75d81f0223cb4",
-      "isRemovable": true,
-      "avatar": "https://yandex.ru/images/search?pos=0&img_url=https%3A%2F%2Fcs8.pikabu.ru%2Fpost_img%2F2018%2F01%2F03%2F6%2Fog_og_1514970948269520343.jpg&text=%D0%BA%D0%BE%D1%82%D0%B8%D0%BA%D0%B8&rpt=simage",
-      "type": "Хрущовка",
-      "timein": "12:00",
-      "timeout": "12:00",
-      "rooms": "1",
-      "capacity": "1",
-      "title": "вымывмпымиыяиавыыыыыыыыыыыыыыыы",
+      "id": "e99fcdf925bbf",
+      "avatar": "../src/img/avatars/user04.png",
+      "title": "Наркоманский притон",
+      "addressText": "Зорге, 13",
+      "price": "500",
+      "address": [
+        "54.938636",
+        "82.90048000000002"
+      ],
       "value": {
-        "lat": 54.9810493,
-        "lng": 82.89647790000004
+        "lat": "54.938636",
+        "lng": "82.90048000000002"
       },
-      "price": "4444"
+      "type": "Хрущовка",
+      "capacity": "1",
+      "rooms": "1",
+      "timein": "13",
+      "timeout": "15",
+      "photos": [
+        "../src/img/interiors/interior01.png"
+      ],
+      "features": [
+        "elevator",
+        "washer"
+      ],
+      "isRemovable": false,
+      "description": "У нас есть всё! Шприцы, кофе, таблетки. Для всех кто знает толк в отдыхе. Полицию просим не беспокоить."
+    },
+    {
+      "id": "e99fcdf925fff",
+      "avatar": "../src/img/avatars/user05.png",
+      "title": "Гнездышко для влюбленных",
+      "addressText": "Арбузова, 1",
+      "price": "1500",
+      "address": [
+        "54.87135869999999",
+        "83.10311550000006"
+      ],
+      "value": {
+        "lat": "54.87135869999999",
+        "lng": "83.10311550000006"
+      },
+      "type": "Студия",
+      "capacity": "2",
+      "rooms": "2",
+      "timein": "15",
+      "timeout": "15",
+      "photos": [
+        "../src/img/interiors/interior02.png",
+        "../src/img/interiors/interior03.png"
+      ],
+      "features": [
+        "wifi",
+        "parking",
+        "elevator",
+        "washer",
+        "conditioner"
+      ],
+      "isRemovable": false,
+      "description": "Милая квартирка для двоих. Свежий ремонт и новая мебель"
+    },
+    {
+      "id": "e99fdsf925fff",
+      "avatar": "../src/img/avatars/user06.png",
+      "title": "Чёткая хата",
+      "addressText": "Большевистская, 10",
+      "price": "5500",
+      "address": [
+        "55.0099552",
+        "82.93142290000003"
+      ],
+      "value": {
+        "lat": "55.0099552",
+        "lng": "82.93142290000003"
+      },
+      "type": "Студия",
+      "capacity": "1",
+      "rooms": "1",
+      "timein": "13",
+      "timeout": "15",
+      "photos": [
+        "../src/img/interiors/interior03.png"
+      ],
+      "features": [
+        "wifi",
+        "parking",
+        "elevator",
+        "washer",
+        "conditioner",
+        "dishwasher"
+      ],
+      "isRemovable": false,
+      "description": "У нас тут все ништяк. Ларек за углом. Пиво 24 часа. Приезжайте!"
+    },
+    {
+      "id": "e99wwsf925fff",
+      "avatar": "../src/img/avatars/user07.png",
+      "title": "Милейшая квартирка рядом с парком",
+      "addressText": "Аникина, 10",
+      "price": "15500",
+      "address": [
+        "54.964875",
+        "82.94518270000003"
+      ],
+      "value": {
+        "lat": "54.964875",
+        "lng": "82.94518270000003"
+      },
+      "type": "Хоромы",
+      "capacity": "3",
+      "rooms": "3",
+      "timein": "13",
+      "timeout": "15",
+      "photos": [
+        "../src/img/interiors/interior03.png",
+        "../src/img/interiors/interior02.png",
+        "../src/img/interiors/interior01.png"
+      ],
+      "features": [
+        "parking",
+        "elevator",
+        "washer",
+        "conditioner",
+        "dishwasher"
+      ],
+      "isRemovable": false,
+      "description": "Великолепный таун-хауз рядом с парком. Подходит как туристам, так и бизнесменам. Без интернета, регистрации и СМС."
     }
   ]
 }

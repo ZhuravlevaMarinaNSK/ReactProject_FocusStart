@@ -1,5 +1,6 @@
 import React, { PureComponent, createRef } from 'react';
-import classNames from 'classnames/class-names';
+import propTypes from 'prop-types';
+import classNames from '../classnames/class-names';
 
 class CreateFeature extends PureComponent {
   innerFeature = [];
@@ -7,7 +8,8 @@ class CreateFeature extends PureComponent {
   fieldEl = createRef();
 
   onCheckboxChange = () => {
-    this.props.onChange(this.props.data.feature.id, this.fieldEl.current.checked);
+    const { onChange, data } = this.props;
+    onChange(data.feature.id, this.fieldEl.current.checked);
   };
 
   createCheckboxes(data) {
@@ -29,10 +31,27 @@ class CreateFeature extends PureComponent {
   }
 
   render() {
-    const { data, onChange } = this.props;
+    const { data } = this.props;
     this.createCheckboxes(data);
     return <div className="features__wrapper">{this.innerFeature}</div>;
   }
 }
+
+CreateFeature.propTypes = {
+  data: propTypes.shape({
+    feature: propTypes.shape({
+      id: propTypes.string.isRequired,
+      name: propTypes.string.isRequired,
+      type: propTypes.string.isRequired,
+      text: propTypes.string.isRequired,
+      classLabel: propTypes.string.isRequired
+    })
+  }).isRequired,
+  onChange: propTypes.func
+};
+
+CreateFeature.defaultProps = {
+  onChange: propTypes.func
+};
 
 export default CreateFeature;

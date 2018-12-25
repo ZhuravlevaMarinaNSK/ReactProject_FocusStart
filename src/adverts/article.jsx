@@ -1,14 +1,13 @@
 import React, { PureComponent } from 'react';
-import createRequest from 'core/create-request';
-
-import RenderPhotos from 'adverts/renderPhotos';
+import propTypes from 'prop-types';
+import RenderPhotos from './renderPhotos';
 
 function checkFeature(adv, item) {
   const feature = item;
   const advert = adv;
   let result = false;
   if (advert.features) {
-    for (let i = 0; i < advert.features.length; i++) {
+    for (let i = 0; i < advert.features.length; i += 1) {
       if (advert.features[i] === feature) {
         result = true;
       }
@@ -23,16 +22,13 @@ function checkFeature(adv, item) {
 
 class Article extends PureComponent {
   onRemoveButtonClick = () => {
-    console.log(this.props.adv.id);
-    this.props.onDelete(this.props.adv.id);
-    // const isDelete = confirm('Вы уверены, что хотите удалить объявление?');
-    // alert(isDelete);
+    debugger;
+    const { onDelete, adv } = this.props;
+    onDelete(adv.id);
   };
 
   render() {
     const { adv, closePopup } = this.props;
-    console.log(adv);
-    // const adv = this.state.adv;
     return (
       <article className="map__card popup">
         <img
@@ -97,4 +93,33 @@ class Article extends PureComponent {
     );
   }
 }
+
+Article.propTypes = {
+  adv: propTypes.shape({
+    id: propTypes.string.isRequired,
+    avatar: propTypes.string.isRequired,
+    type: propTypes.string.isRequired,
+    timein: propTypes.string.isRequired,
+    timeout: propTypes.string.isRequired,
+    isRemovable: propTypes.bool.isRequired,
+    rooms: propTypes.string.isRequired,
+    capacity: propTypes.string.isRequired,
+    title: propTypes.string.isRequired,
+    value: propTypes.shape({
+      lat: propTypes.oneOfType([propTypes.number, propTypes.string]).isRequired,
+      lng: propTypes.oneOfType([propTypes.number, propTypes.string]).isRequired
+    }),
+    price: propTypes.string.isRequired,
+    description: propTypes.string,
+    features: propTypes.arrayOf(propTypes.string)
+  }).isRequired,
+  onDelete: propTypes.func,
+  closePopup: propTypes.func
+};
+
+Article.defaultProps = {
+  onDelete: propTypes.func,
+  closePopup: propTypes.func
+};
+
 export default Article;

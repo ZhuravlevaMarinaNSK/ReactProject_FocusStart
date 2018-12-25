@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
-import createRequest from 'core/create-request';
-import { fetchAdvert, createAdvert } from 'core/api-config';
-import { deleteAdvert } from 'core/api-config';
-import classNames from 'classnames/class-names';
-import Article from 'adverts/article';
-import Map from 'adverts/map';
+import createRequest from '../core/create-request';
+import { fetchAdvert, createAdvert, deleteAdvert } from '../core/api-config';
+import classNames from '../classnames/class-names';
+import Article from './article';
+import Map from './map';
 
 class Adverts extends PureComponent {
   state = {
@@ -25,10 +24,9 @@ class Adverts extends PureComponent {
   }
 
   onDelete = (id) => {
-    const newid = id;
     const modal = document.querySelector('.modal');
     modal.classList.remove('hidden');
-    this.setState({ onDeleteID: newid });
+    this.setState({ onDeleteID: id });
   };
 
   onRejectButtonClick = () => {
@@ -39,7 +37,8 @@ class Adverts extends PureComponent {
   onAgreeButtonClick = () => {
     const success = document.querySelector('.success');
     const modal = document.querySelector('.modal');
-    const id = this.state.onDeleteID;
+    const { onDeleteID } = this.state;
+    const id = onDeleteID;
     createRequest(deleteAdvert, { id }).then((response) => {
       if (response.status === 'OK') {
         modal.classList.add('hidden');
@@ -75,7 +74,6 @@ class Adverts extends PureComponent {
 
   render() {
     const { popupOpenedId, isLoading, adverts } = this.state;
-    console.log(this.props);
     return (
       <div>
         <header className="header">
@@ -85,7 +83,7 @@ class Adverts extends PureComponent {
           <Map openPopup={this.openPopup} adverts={adverts} />
           {popupOpenedId && (
             <Article
-              adv={this.state.adverts.find(data => data.id === popupOpenedId)}
+              adv={adverts.find(data => data.id === popupOpenedId)}
               closePopup={this.closePopup}
               onDelete={this.onDelete}
             />

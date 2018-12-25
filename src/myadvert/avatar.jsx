@@ -1,5 +1,5 @@
 import React, { PureComponent, createRef } from 'react';
-import classNames from 'classnames/class-names';
+import propTypes from 'prop-types';
 
 class CreateAvatar extends PureComponent {
   fieldEl = createRef();
@@ -11,33 +11,36 @@ class CreateAvatar extends PureComponent {
   avatar = [];
 
   componentDidUpdate(prevProps) {
-    if (this.state.src !== prevProps.data.img.src) {
-      console.log('change avatar');
+    const { src } = this.state;
+    if (src !== prevProps.data.img.src) {
+      console.log('avatar changed');
     }
   }
 
   onInputChange = () => {
+    const { data, onChange } = this.props;
     this.setState({ src: this.fieldEl.current.value });
-    console.log(this.props);
-    this.props.onChange(this.props.data.avatar.id, this.fieldEl.current.value);
+    onChange(data.avatar.id, this.fieldEl.current.value);
   };
 
   downloadAvatar(data) {
     this.avatar = [];
+    const { src } = this.state;
+    const fileInput = data.data;
     this.avatar.push(
-      <div className="ad-form-header__upload" key={data.data.avatar.id}>
+      <div className="ad-form-header__upload" key={fileInput.avatar.id}>
         <div className="ad-form-header__preview">
-          <img src={this.state.src} alt="Аватар пользователя" width="40" height="44" />
+          <img src={src} alt="Аватар пользователя" width="40" height="44" />
         </div>
-        <div className={data.data.fieldsetClass}>
-          <label className={data.data.labelClass} htmlFor="avatar">
+        <div className={fileInput.fieldsetClass}>
+          <label className={fileInput.labelClass} htmlFor="avatar">
             <input
               type="text"
-              id={data.data.avatar.id}
-              name={data.data.avatar.name}
-              className={data.data.avatar.class}
+              id={fileInput.avatar.id}
+              name={fileInput.avatar.name}
+              className={fileInput.avatar.class}
               ref={this.fieldEl}
-              autoComplete='off'
+              autoComplete="off"
               onChange={this.onInputChange}
             />
             Вставьте ссылку на изображение
@@ -58,6 +61,21 @@ class CreateAvatar extends PureComponent {
     return <div>{this.avatar}</div>;
   }
 }
+
+CreateAvatar.propTypes = {
+  data: propTypes.shape({
+    avatar: propTypes.shape({
+      id: propTypes.string.isRequired,
+      name: propTypes.string.isRequired,
+      class: propTypes.string.isRequired
+    })
+  }).isRequired,
+  onChange: propTypes.func
+};
+
+CreateAvatar.defaultProps = {
+  onChange: propTypes.func
+};
 
 export default CreateAvatar;
 

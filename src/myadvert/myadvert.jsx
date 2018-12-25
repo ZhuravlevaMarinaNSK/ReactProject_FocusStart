@@ -1,13 +1,13 @@
-import React, { PureComponent, createRef } from 'react';
-import classNames from 'classnames/class-names';
-import createRequest from 'core/create-request';
-import { createAdvert } from 'core/api-config';
-import Input from 'myadvert/input';
-import Select from 'myadvert/select';
-import Feature from 'myadvert/feature';
-import CreateAvatar from 'myadvert/avatar';
-import CreateTextarea from 'myadvert/textarea';
-import LocationSearchInput from 'myadvert/places';
+import React, { PureComponent } from 'react';
+import Input from './input';
+import Select from './select';
+import Feature from './feature';
+import CreateAvatar from './avatar';
+import CreateTextarea from './textarea';
+import LocationSearchInput from './locationSearch';
+import classNames from '../classnames/class-names';
+import createRequest from '../core/create-request';
+import { createAdvert } from '../core/api-config';
 
 class MyAdvert extends PureComponent {
   state = { avatar: './src/img/avatars/default.png' };
@@ -289,36 +289,35 @@ class MyAdvert extends PureComponent {
     form.reset();
   };
 
-  addAdvert = dataValues => {
-    Object.keys(dataValues).forEach(item => {
+  addAdvert = (dataValues) => {
+    const values = dataValues;
+    Object.keys(values).forEach((item) => {
       if (item.includes('feature')) {
-        dataValues.features = dataValues.features || [];
+        values.features = values.features || [];
         const items = item.split('-');
         dataValues.features.push(items[1]);
-        delete dataValues.item;
       }
     });
-    console.log(dataValues);
     const success = document.querySelector('.success');
+    const { history } = this.props;
     createRequest(createAdvert, null, { dataValues }).then(({ status }) => {
       if (status === 'OK') {
         success.classList.remove('hidden');
         setTimeout(() => {
-          this.props.history.goBack();
+          history.goBack();
         }, 2000);
       }
     });
   };
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     this.addAdvert(this.state);
   };
 
   renderFields() {
     const fields = this.ADVERT_FIELDS;
-    return fields.map(it =>
-      Object.keys(it).map(key => {
+    return fields.map(it => Object.keys(it).map((key) => {
         if (key === 'avatar') {
           return (
             <fieldset key={it.id} className="ad-form-header">
@@ -389,12 +388,10 @@ class MyAdvert extends PureComponent {
             </fieldset>
           );
         }
-      })
-    );
+      }));
   }
 
   render() {
-    console.log(this.props);
     return (
       <section className="notice">
         <h2 className="notice__title">Ваше объявление</h2>

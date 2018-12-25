@@ -1,4 +1,5 @@
 import React, { PureComponent, createRef } from 'react';
+import propTypes from 'prop-types';
 
 class CreateSelect extends PureComponent {
   fieldEl = createRef();
@@ -6,34 +7,57 @@ class CreateSelect extends PureComponent {
   innerSelect = [];
 
   onSelectChange = () => {
-    this.props.onChange(this.props.data.select.id, this.fieldEl.current.value);
+    const { onChange, data } = this.props;
+    onChange(data.select.id, this.fieldEl.current.value);
   };
 
   componentDidMount = () => {
-    this.props.onChange(this.props.data.select.id, this.fieldEl.current.value);
+    const { onChange, data } = this.props;
+    onChange(data.select.id, this.fieldEl.current.value);
   };
 
   createSelect(select) {
+    const selectData = select.select;
     this.innerSelect.push(
       <select
-        key={select.select.id}
-        id={select.select.id}
-        name={select.select.name}
+        key={selectData.id}
+        id={selectData.id}
+        name={selectData.name}
         ref={this.fieldEl}
         onChange={this.onSelectChange}
       >
-        <option value={select.select.optionValue1}>{select.select.optionText1}</option>
-        <option value={select.select.optionValue2}>{select.select.optionText2}</option>
-        <option value={select.select.optionValue3}>{select.select.optionText3}</option>
+        <option value={selectData.optionValue1}>{selectData.optionText1}</option>
+        <option value={selectData.optionValue2}>{selectData.optionText2}</option>
+        <option value={selectData.optionValue3}>{selectData.optionText3}</option>
       </select>
     );
   }
 
   render() {
-    const { data, onChange } = this.props;
+    const { data } = this.props;
     this.createSelect(data);
     return <div className="wrapper">{this.innerSelect}</div>;
   }
 }
+
+CreateSelect.propTypes = {
+  data: propTypes.shape({
+    select: propTypes.shape({
+      id: propTypes.string.isRequired,
+      name: propTypes.string.isRequired,
+      optionValue1: propTypes.string.isRequired,
+      optionValue2: propTypes.string.isRequired,
+      optionValue3: propTypes.string.isRequired,
+      optionText1: propTypes.string.isRequired,
+      optionText2: propTypes.string.isRequired,
+      optionText3: propTypes.string.isRequired
+    })
+  }).isRequired,
+  onChange: propTypes.func
+};
+
+CreateSelect.defaultProps = {
+  onChange: propTypes.func
+};
 
 export default CreateSelect;

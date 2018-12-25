@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 
 class Map extends Component {
   state = {
-    map: null,
-    advertsLength: 0
+    map: null
   };
 
   componentDidMount() {
@@ -17,7 +17,8 @@ class Map extends Component {
               fullscreenControl: false
             })
           });
-          this.state.map.zoomControl.setPosition('topright');
+          const { map } = this.state;
+          map.zoomControl.setPosition('topright');
         })}
       </div>
     );
@@ -25,6 +26,7 @@ class Map extends Component {
 
   componentDidUpdate(prevProps) {
     const { adverts, openPopup } = this.props;
+    const { map } = this.state;
     if (adverts.length) {
       if (adverts.length > 0 && adverts.length < prevProps.adverts.length) {
         adverts.map((item) => {
@@ -34,13 +36,15 @@ class Map extends Component {
             iconAnchor: [22, 20],
             popupAnchor: [-3, -6]
           });
-          this.state.map
+          return (
+            map
             && DG.marker([item.value.lat, item.value.lng], { icon: myIcon })
-              .addTo(this.state.map)
+              .addTo(map)
               .bindLabel(item.title)
               .on('click', () => {
                 openPopup(item.id);
-              });
+              })
+          );
         });
       }
     }
@@ -48,6 +52,7 @@ class Map extends Component {
 
   render() {
     const { adverts, openPopup } = this.props;
+    const { map } = this.state;
     return (
       <div className="test">
         {adverts.map((item) => {
@@ -57,9 +62,9 @@ class Map extends Component {
             iconAnchor: [22, 20],
             popupAnchor: [-3, -6]
           });
-          this.state.map
+          map
             && DG.marker([item.value.lat, item.value.lng], { icon: myIcon })
-              .addTo(this.state.map)
+              .addTo(map)
               .bindLabel(item.title)
               .on('click', () => {
                 openPopup(item.id);
@@ -69,5 +74,33 @@ class Map extends Component {
     );
   }
 }
+
+Map.propTypes = {
+  adverts: propTypes.arrayOf(
+    propTypes.shape({
+      id: propTypes.string.isRequired,
+      avatar: propTypes.string.isRequired,
+      type: propTypes.string.isRequired,
+      timein: propTypes.string.isRequired,
+      timeout: propTypes.string.isRequired,
+      isRemovable: propTypes.bool.isRequired,
+      rooms: propTypes.string.isRequired,
+      capacity: propTypes.string.isRequired,
+      title: propTypes.string.isRequired,
+      value: propTypes.shape({
+        lat: propTypes.oneOfType([propTypes.number, propTypes.string]).isRequired,
+        lng: propTypes.oneOfType([propTypes.number, propTypes.string]).isRequired
+      }),
+      price: propTypes.string.isRequired,
+      description: propTypes.string,
+      features: propTypes.arrayOf(propTypes.string)
+    })
+  ).isRequired,
+  openPopup: propTypes.func
+};
+
+Map.defaultProps = {
+  openPopup: propTypes.func
+};
 
 export default Map;

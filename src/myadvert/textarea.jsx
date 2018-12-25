@@ -1,4 +1,5 @@
 import React, { PureComponent, createRef } from 'react';
+import propTypes from 'prop-types';
 
 class CreateTextarea extends PureComponent {
   fieldEl = createRef();
@@ -6,7 +7,8 @@ class CreateTextarea extends PureComponent {
   innerTextarea = [];
 
   onTextareaChange = () => {
-    this.props.onChange(this.props.data.textarea.id, this.fieldEl.current.value);
+    const { onChange, data } = this.props;
+    onChange(data.textarea.id, this.fieldEl.current.value);
   };
 
   createTextarea(textarea) {
@@ -23,10 +25,25 @@ class CreateTextarea extends PureComponent {
   }
 
   render() {
-    const { data, onChange } = this.props;
+    const { data } = this.props;
     this.createTextarea(data);
     return <div className="wrapper">{this.innerTextarea}</div>;
   }
 }
+
+CreateTextarea.propTypes = {
+  data: propTypes.shape({
+    textarea: propTypes.shape({
+      id: propTypes.string.isRequired,
+      name: propTypes.string.isRequired,
+      placeholder: propTypes.string.isRequired
+    })
+  }).isRequired,
+  onChange: propTypes.func
+};
+
+CreateTextarea.defaultProps = {
+  onChange: propTypes.func
+};
 
 export default CreateTextarea;
